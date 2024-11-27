@@ -23,6 +23,7 @@
     "@mui/material": "^5.16.6",
     "@mui/system": "^5.16.6",
     "axios": "^1.7.3",
+    "docker": "^1.0.0",
     "formik": "^2.4.6",
     "framer-motion": "^11.3.21",
     "lodash": "^4.17.21",
@@ -38,6 +39,7 @@
     "simplebar-react": "^3.2.6",
     "stylis-plugin-rtl": "^2.1.1",
     "swr": "^2.2.5",
+    "yarn": "^1.22.22",
     "yup": "^1.4.0"
   },
   "devDependencies": {
