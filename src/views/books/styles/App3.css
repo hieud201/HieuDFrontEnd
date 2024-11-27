@@ -1,0 +1,65 @@
+.website-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-book-link {
+  text-decoration: none;
+  margin-right: 20px;
+}
+.help-link {
+  text-decoration: none;
+  margin-right: 20px;
+}
+.log-out {
+  text-decoration: none;
+}
+.search-information {
+  font-weight: bold;
+  display: flex;           
+  align-items: center;                 
+  margin-bottom: 20px;     
+}
+
+.search-text {
+  margin: 0;               
+  width: 100px;            
+}
+.search-input {
+  padding: 0.5rem;         
+  font-size: 1rem;         
+  height: 2rem;           
+  width: 400px;       
+  border-width: 2px;     
+}
+
+.book-search-button {
+  font-weight: bold;
+  background-color:#4681f4;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 20px;
+  margin-right: 20px; 
+}
+.reset-button {
+  font-weight: bold;
+  background-color:#4681f4;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 20px;
+}
+
+.single-book-style {
+  margin-top: 20px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  background: linear-gradient(145deg, #f4f4f4, #ffffff);
+}
+
+.single-book-style:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
