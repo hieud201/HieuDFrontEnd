@@ -1,10 +1,12 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'styles/App3.css';
-import BookDisplay from './components/bookDisplay'
+import './styles/App3.css';
+import BookDisplay from './components/bookDisplay';
 import books from './mockData';
-import { Box, Pagination } from "@mui/material";
+import { Box, Pagination } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 // Define a type for books if it's not already defined (this can be a more detailed type)
@@ -70,7 +72,7 @@ const App3: React.FC = () => {
         <Card.Body>
           <div className="search-information">
             <p className="search-text">Author</p>
-            <input className="search-input" type="text" placeholder='' />
+            <input className="search-input" type="text" placeholder="" />
           </div>
 
           <div className="search-information">
@@ -95,16 +97,11 @@ const App3: React.FC = () => {
 
       <BookDisplay books={books} currentPage={currentPage} booksPerPage={booksPerPage} />
 
-      <Box display="flex" justifyContent="center" sx={{ margin: "20px 0px" }}>
-        <Pagination
-          count={totalPage}
-          page={currentPage}
-          onChange={handlePageChange}
-          color="primary"
-        />
+      <Box display="flex" justifyContent="center" sx={{ margin: '20px 0px' }}>
+        <Pagination count={totalPage} page={currentPage} onChange={handlePageChange} color="primary" />
       </Box>
     </div>
   );
-}
+};
 
 export default App3;
