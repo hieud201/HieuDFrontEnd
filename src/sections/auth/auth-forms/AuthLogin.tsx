@@ -72,12 +72,17 @@ export default function AuthLogin({ providers, csrfToken }: any) {
       })}
       onSubmit={(values, { setErrors, setSubmitting }) => {
         const trimmedEmail = values.email.trim();
-        signIn('login', {
-          redirect: false,
-          email: trimmedEmail,
-          password: values.password,
-          callbackUrl: APP_DEFAULT_PATH
-        }).then(
+        fetch('http://localhost:4000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: trimmedEmail,
+            password: values.password
+          })
+        })
+        .then(
           (res: any) => {
             if (res?.error) {
               setErrors({ submit: res.error });
