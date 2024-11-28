@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 // next
 import { getSession } from 'next-auth/react';
 
-const axiosServices = axios.create({ baseURL: process.env.WEB_API_URL || 'http://localhost:3010/' });
+const axiosServices = axios.create({ baseURL: process.env.WEB_API_URL || 'http://localhost:4000/' });
 
 // ==============================|| AXIOS - FOR MOCK SERVICES ||============================== //
 

@@ -21,8 +21,8 @@ export const authOptions: NextAuthOptions = {
             email: credentials?.email
           });
           if (user) {
-            user.data.user['accessToken'] = user.data.accessToken;
-            return user.data.user;
+            user.data['accessToken'] = user.data.accessToken;
+            return user.data;
           }
         } catch (e: any) {
           console.dir(e);
