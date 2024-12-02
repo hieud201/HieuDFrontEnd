@@ -23,6 +23,8 @@ import Box from '@mui/material/Box';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import 'yup-phone';
+import YupPassword from 'yup-password';
+YupPassword(Yup);
 
 // project import
 import IconButton from 'components/@extended/IconButton';
@@ -74,15 +76,11 @@ export default function AuthRegister({ providers, csrfToken }: any) {
         firstname: Yup.string().max(255).required('First Name is required'),
         lastname: Yup.string().max(255).required('Last Name is required'),
         email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-        number: Yup.string().max(10).required('Phone number is required'),
+        number: Yup.string().min(10).max(10).required('Phone number is required'),
         password: Yup.string()
+          .password()
           .required('Password is required')
-          // .uppercase('Password must contain at least 1 uppercase letter')
-          // .lowercase('Password must contain at least 1 lowercase letter')
-          .matches(/\d/, 'Password requires a number')
-          .matches(/[^A-Za-z0-9]/, 'Password must contain at least one special character')
           .test('no-leading-trailing-whitespace', 'Password cannot start or end with spaces', (value) => value === value.trim())
-          .min(8, 'Password must be at least 10 characters')
       })}
       onSubmit={async (values, { setErrors, setSubmitting }) => {
         const trimmedEmail = values.email.trim();
