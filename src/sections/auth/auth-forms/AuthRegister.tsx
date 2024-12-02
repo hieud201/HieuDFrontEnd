@@ -76,7 +76,10 @@ export default function AuthRegister({ providers, csrfToken }: any) {
         firstname: Yup.string().max(255).required('First Name is required'),
         lastname: Yup.string().max(255).required('Last Name is required'),
         email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-        number: Yup.string().min(10).max(10).required('Phone number is required'),
+        number: Yup.string()
+          .matches(/^\d+$/, 'Phone number must contain only digits')
+          .length(10, 'Phone number must be exactly 10 digits')
+          .required('Phone number is required'),
         password: Yup.string()
           .password()
           .required('Password is required')

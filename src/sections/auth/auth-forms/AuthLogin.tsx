@@ -21,8 +21,10 @@ import Typography from '@mui/material/Typography';
 
 // third party
 import * as Yup from 'yup';
+import YupPassword from 'yup-password';
 import { preload } from 'swr';
 import { Formik } from 'formik';
+YupPassword(Yup);
 
 // project import
 import IconButton from 'components/@extended/IconButton';
