@@ -67,21 +67,15 @@ export default function AuthLogin({ providers, csrfToken }: any) {
         email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
         password: Yup.string()
           .required('Password is required')
+          // .uppercase('Password must contain at least 1 uppercase letter')
+          // .lowercase('Password must contain at least 1 lowercase letter')
+          .matches(/\d/, 'Password requires a number')
+          .matches(/[^A-Za-z0-9]/, 'Password must contain at least one special character')
           .test('no-leading-trailing-whitespace', 'Password cannot start or end with spaces', (value) => value === value.trim())
-          .max(10, 'Password must be less than 10 characters')
+          .min(8, 'Password must be at least 10 characters')
       })}
       onSubmit={(values, { setErrors, setSubmitting }) => {
         const trimmedEmail = values.email.trim();
-        // fetch('http://localhost:4000/login', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify({
-        //     email: trimmedEmail,
-        //     password: values.password
-        //   })
-        // })
         signIn('login', {
           redirect: false,
           email: trimmedEmail,
