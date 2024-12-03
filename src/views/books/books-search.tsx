@@ -5,12 +5,10 @@ import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App3.css';
 import BookDisplay from './components/bookDisplay';
-import books from './mockData';
 import { Box, Pagination } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSession } from 'next-auth/react';
 
-// Define a type for books if it's not already defined (this can be a more detailed type)
 interface Book {
   book_id: number;
   isbn13: number;
@@ -20,53 +18,133 @@ interface Book {
   title: string;
   average_rating: number;
   ratings_count: number;
-  ratings_1: number;
-  ratings_2: number;
-  ratings_3: number;
-  ratings_4: number;
-  ratings_5: number;
   image_url: string;
   small_image_url: string;
 }
 
-interface App3Props {
-  books: Book[];
+interface SearchCriteria {
+  isbn: string;
+  author: string;
+  title: string;
+  rating: string;
 }
 
 const App3: React.FC = () => {
-
+  const booksPerPage = 4;
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [fetchedBooks, setFetchedBooks] = useState<Book[]>([]);
   const { data: session } = useSession();
 
-  // Function to fetch books
-  const handleBookFetch = async () => {
+  // Unified search state
+  const [searchCriteria, setSearchCriteria] = useState<SearchCriteria>({
+    isbn: '',
+    author: '',
+    title: '',
+    rating: ''
+  });
+
+  // Fetch initial books
+  useEffect(() => {
+    const fetchInitialBooks = async () => {
+      try {
+        const limit = 20;
+        const offset = 0;
+        const response = await fetch(`http://localhost:4000/retrieve/retrieveBooks?limit=${limit}&offset=${offset}`, {
+          method: "GET",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${session?.token?.accessToken}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch books');
+        }
+        
+        const data = await response.json();
+        setFetchedBooks(data.books);
+      } catch (error) {
+        console.error('Error fetching books:', error);
+      }
+    };
+
+    if (session) {
+      fetchInitialBooks();
+    }
+  }, [session, searchCriteria]);
+
+  // Unified search handler
+  const handleSearch = async () => {
+    if (!session) return;
+
     try {
-      const response = await fetch("http://localhost:4000/retrieve/retrieveBooks", {
+      let endpoint = 'http://localhost:4000/retrieve/';
+      let queryParam = '';
+
+      if (searchCriteria.isbn) {
+        endpoint += 'retrieveISBN';
+        queryParam = `ISBN=${searchCriteria.isbn}`;
+      } else if (searchCriteria.author) {
+        endpoint += 'retrieveAuthor';
+        queryParam = `author=${searchCriteria.author}`;
+      } else if (searchCriteria.title) {
+        endpoint += 'retrieveTitle';
+        queryParam = `title=${searchCriteria.title}`;
+      } else if (searchCriteria.rating) {
+        endpoint += 'retrieveRating';
+        queryParam = `rating=${searchCriteria.rating}`;
+      } else {
+        // If no search criteria, fetch all books
+        return;
+      }
+
+      const response = await fetch(`${endpoint}?${queryParam}`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.token.accessToken}`
-        }
+          'Authorization': `Bearer ${session.token.accessToken}`,
+        },
       });
-      const data = await response.json(); 
-      console.log(data); 
+
+      if (!response.ok) {
+        throw new Error('Search failed');
+      }
+
+      const data = await response.json();
       setFetchedBooks(data.books);
+      setCurrentPage(1);
     } catch (error) {
-      console.error('Error fetching books:', error);
+      console.error('Search error:', error);
+      // Optional: Add user-friendly error handling
     }
   };
 
-  useEffect(() => {
-    handleBookFetch(); 
-  }, []); 
+  // Handle input changes
+  const handleInputChange = (field: keyof SearchCriteria, value: string) => {
+    // Clear other fields when one is being typed
+    const updatedCriteria = {
+      isbn: '',
+      author: '',
+      title: '',
+      rating: ''
+    };
+    updatedCriteria[field] = value;
+    
+    setSearchCriteria(updatedCriteria);
+  };
 
+  // Reset search
+  const handleReset = () => {
+    setSearchCriteria({
+      isbn: '',
+      author: '',
+      title: '',
+      rating: ''
+    });
+  };
 
-  const booksPerPage = 4;
-  const [currentPage, setCurrentPage] = useState<number>(1); // Explicitly typing state
+  const totalPage = Math.ceil(fetchedBooks.length / booksPerPage);
 
-  const totalPage = Math.ceil(books.length / booksPerPage);
-
-  // Typing event and page parameters for the handlePageChange function
   const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
     setCurrentPage(page);
   };
@@ -78,55 +156,88 @@ const App3: React.FC = () => {
           <div className="website-header">
             <h1>BOOKHUB</h1>
             <div>
-              <a href="/addbook" className="add-book-link">
-                AddBook
-              </a>
-              <a href="/help" className="help-link">
-                Help
-              </a>
-              <a href="/logout" className="log-out">
-                Log Out
-              </a>
+              <a href="/addbook" className="add-book-link">AddBook</a>
+              <a href="/help" className="help-link">Help</a>
             </div>
           </div>
         </Card.Body>
       </Card>
 
       <Card>
-        <p>
-          <SearchIcon />
-          Search Book
-        </p>
+        <p><SearchIcon /> Search Book</p>
         <Card.Body>
           <div className="search-information">
-            <p className="search-text">Author</p>
-            <input className="search-input" type="text" placeholder="" />
+            <p className="search-text">ISBN</p>
+            <input 
+              className="search-input" 
+              type="text" 
+              value={searchCriteria.isbn}
+              onChange={(e) => handleInputChange('isbn', e.target.value)}
+              disabled={Object.values(searchCriteria).some(val => val !== '')}
+            />
           </div>
 
           <div className="search-information">
-            <p className="search-text">ID</p>
-            <input className="search-input" type="text" />
+            <p className="search-text">Author</p>
+            <input 
+              className="search-input" 
+              type="text" 
+              value={searchCriteria.author}
+              onChange={(e) => handleInputChange('author', e.target.value)}
+              disabled={Object.values(searchCriteria).some(val => val !== '')}
+            />
+          </div>
+
+          <div className="search-information">
+            <p className="search-text">Rating</p>
+            <input 
+              className="search-input" 
+              type="text" 
+              value={searchCriteria.rating}
+              onChange={(e) => handleInputChange('rating', e.target.value)}
+              disabled={Object.values(searchCriteria).some(val => val !== '')}
+            />
           </div>
 
           <div className="search-information">
             <p className="search-text">Title</p>
-            <input className="search-input" type="text" />
+            <input              
+              className="search-input" 
+              type="text" 
+              value={searchCriteria.title}
+              onChange={(e) => handleInputChange('title', e.target.value)}
+              disabled={Object.values(searchCriteria).some(val => val !== '')}
+            />
           </div>
 
-          <div className="search-information">
-            <p className="search-text">ISBN</p>
-            <input className="search-input" type="text" />
-          </div>
-
-          <button className="book-search-button">Book Search</button>
-          <button className="reset-button">Reset</button>
+          <button 
+            className="book-search-button" 
+            onClick={handleSearch}
+          >
+            Book Search
+          </button>
+          <button 
+            className="reset-button"
+            onClick={handleReset}
+          >
+            Reset
+          </button>
         </Card.Body>
       </Card>
 
-      <BookDisplay books={books} currentPage={currentPage} booksPerPage={booksPerPage} />
+      <BookDisplay 
+        books={fetchedBooks} 
+        currentPage={currentPage} 
+        booksPerPage={booksPerPage} 
+      />
 
       <Box display="flex" justifyContent="center" sx={{ margin: '20px 0px' }}>
-        <Pagination count={totalPage} page={currentPage} onChange={handlePageChange} color="primary" />
+        <Pagination 
+          count={totalPage} 
+          page={currentPage} 
+          onChange={handlePageChange} 
+          color="primary" 
+        />
       </Box>
     </div>
   );

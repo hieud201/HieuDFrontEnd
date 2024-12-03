@@ -29,11 +29,11 @@ const BookDisplay: React.FC<BookDisplayProps> = ({ books, currentPage, booksPerP
           <Col md={6} key={book.book_id}>
             <Card className="single-book-style">
               <Card.Body>
-                <Card.Title><strong>{book.original_title}</strong> </Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Author: {book.authors}</Card.Subtitle>
+                <Card.Title><strong>{book.title}</strong> </Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">Author: {book.author}</Card.Subtitle>
                 <Card.Text>ISBN: {book.isbn13}</Card.Text>
-                <Card.Text>Year: {book.original_publication_year}</Card.Text>
-                <img src={book.image_url} alt={book.title} />
+                <Card.Text>Year: {book.publication}</Card.Text>
+                <img src={book.icons.large} alt={book.title} />
               </Card.Body>
             </Card>
           </Col>
