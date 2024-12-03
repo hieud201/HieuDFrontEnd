@@ -60,10 +60,10 @@ const pages: NavItemType = {
           icon: icons.SearchOutlined
         },
         {
-          id: 'add-book',
-          title: <FormattedMessage id="add-book" />,
+          id: 'search-book',
+          title: <FormattedMessage id="Search Book" />,
           type: 'item',
-          url: '/books/add',
+          url: '/books/search',
           icon: icons.PlusOutlined
         },
         {

@@ -1,4 +1,4 @@
-import App3 from 'views/books/books-add';
+import App3 from 'views/books/books-search';
 
 // ==============================|| PAGE ||============================== //
 
