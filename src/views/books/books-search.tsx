@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App3.css';
@@ -8,6 +8,7 @@ import BookDisplay from './components/bookDisplay';
 import books from './mockData';
 import { Box, Pagination } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { useSession } from 'next-auth/react';
 
 // Define a type for books if it's not already defined (this can be a more detailed type)
 interface Book {
@@ -33,6 +34,33 @@ interface App3Props {
 }
 
 const App3: React.FC = () => {
+
+  const [fetchedBooks, setFetchedBooks] = useState<Book[]>([]);
+  const { data: session } = useSession();
+
+  // Function to fetch books
+  const handleBookFetch = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/retrieve/retrieveBooks", {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.token.accessToken}`
+        }
+      });
+      const data = await response.json(); 
+      console.log(data); 
+      setFetchedBooks(data.books);
+    } catch (error) {
+      console.error('Error fetching books:', error);
+    }
+  };
+
+  useEffect(() => {
+    handleBookFetch(); 
+  }, []); 
+
+
   const booksPerPage = 4;
   const [currentPage, setCurrentPage] = useState<number>(1); // Explicitly typing state
 
