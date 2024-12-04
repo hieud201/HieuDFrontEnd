@@ -6,16 +6,16 @@ import MessageOutlined from '@ant-design/icons/MessageOutlined';
 import BookOutlined from '@ant-design/icons/BookOutlined';
 import EmailIcon from '@mui/icons-material/Email';
 import SendIcon from '@mui/icons-material/Send';
-import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import SearchOutlined from '@ant-design/icons/SearchOutlined';
+import EyeOutlined from '@ant-design/icons/EyeOutlined';
 
 
 // type
 import { NavItemType } from 'types/menu';
 
 // icons
-const icons = { MessageOutlined, EmailIcon, SendIcon, BookOutlined, DeleteOutlined, PlusOutlined, SearchOutlined };
+const icons = { MessageOutlined, EmailIcon, SendIcon, BookOutlined, PlusOutlined, SearchOutlined, EyeOutlined };
 
 // ==============================|| MENU ITEMS - PAGES ||============================== //
 
@@ -57,21 +57,21 @@ const pages: NavItemType = {
           title: <FormattedMessage id="view-book" />,
           type: 'item',
           url: '/books/view',
-          icon: icons.SearchOutlined
+          icon: icons.EyeOutlined
         },
         {
           id: 'search-book',
-          title: <FormattedMessage id="Search Book" />,
+          title: <FormattedMessage id="search-book" />,
           type: 'item',
           url: '/books/search',
-          icon: icons.PlusOutlined
+          icon: icons.SearchOutlined
         },
         {
-          id: 'delete-book',
-          title: <FormattedMessage id="delete-book" />,
+          id: 'add-book',
+          title: <FormattedMessage id="add-book" />,
           type: 'item',
-          url: '/books/delete',
-          icon: icons.DeleteOutlined
+          url: '/books/add',
+          icon: icons.PlusOutlined
         }
       ]
     }
