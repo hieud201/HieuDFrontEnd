@@ -179,7 +179,7 @@ const App3: React.FC = () => {
               type="text" 
               value={searchCriteria.isbn}
               onChange={(e) => handleInputChange('isbn', e.target.value)}
-              disabled={Object.values(searchCriteria).some(val => val !== '')}
+              disabled={searchCriteria.isbn === '' && Object.values(searchCriteria).some((val, idx) => idx !== 0 && val !== '')}
             />
           </div>
 
@@ -190,7 +190,7 @@ const App3: React.FC = () => {
               type="text" 
               value={searchCriteria.author}
               onChange={(e) => handleInputChange('author', e.target.value)}
-              disabled={Object.values(searchCriteria).some(val => val !== '')}
+              disabled={searchCriteria.author === '' && Object.values(searchCriteria).some((val, idx) => idx !== 1 && val !== '')}
             />
           </div>
 
@@ -201,7 +201,7 @@ const App3: React.FC = () => {
               type="text" 
               value={searchCriteria.rating}
               onChange={(e) => handleInputChange('rating', e.target.value)}
-              disabled={Object.values(searchCriteria).some(val => val !== '')}
+              disabled={searchCriteria.rating === '' && Object.values(searchCriteria).some((val, idx) => idx !== 2 && val !== '')}
             />
           </div>
 
@@ -212,7 +212,7 @@ const App3: React.FC = () => {
               type="text" 
               value={searchCriteria.title}
               onChange={(e) => handleInputChange('title', e.target.value)}
-              disabled={Object.values(searchCriteria).some(val => val !== '')}
+              disabled={searchCriteria.title === '' && Object.values(searchCriteria).some((val, idx) => idx !== 3 && val !== '')}
             />
           </div>
 
