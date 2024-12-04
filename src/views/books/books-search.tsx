@@ -54,7 +54,7 @@ const App3: React.FC = () => {
   useEffect(() => {
     const fetchInitialBooks = async () => {
       try {
-        const limit = 20;
+        const limit = 100;
         const offset = 0;
         const response = await fetch(`http://localhost:4000/retrieve/retrieveBooks?limit=${limit}&offset=${offset}`, {
           method: "GET",
@@ -165,10 +165,6 @@ const App3: React.FC = () => {
         <Card.Body>
           <div className="website-header">
             <h1>BOOKHUB</h1>
-            <div>
-              <a href="/addbook" className="add-book-link">AddBook</a>
-              <a href="/help" className="help-link">Help</a>
-            </div>
           </div>
         </Card.Body>
       </Card>

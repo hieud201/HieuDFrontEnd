@@ -4,6 +4,7 @@ import React, { useState, useEffect} from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, Container, Row, Col, Spinner } from 'react-bootstrap'; // Added Spinner for better loading indication
 import { useSession } from 'next-auth/react';
+import './styles/App3.css';
 
 
 interface Book {
@@ -25,6 +26,7 @@ interface Book {
       small: string;
   };
 }
+
 
 const BookViewPage: React.FC = () => {
   const { data: session } = useSession();
@@ -96,25 +98,29 @@ const BookViewPage: React.FC = () => {
           />
         </Col>
         <Col md={8}>
-          <Card>
+          <Card className="book-details-card shadow-sm">
             <Card.Body>
-              <Card.Title><h1>{book.title}</h1></Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">Author: {book.author}</Card.Subtitle>
-              
+              <Card.Title className="text-primary mb-4">
+                <h1>{book.title}</h1>
+              </Card.Title>
+              <Card.Subtitle className="text-muted mb-3">
+                <strong>Author:</strong> {book.author}
+              </Card.Subtitle>
+
               <div className="book-details">
                 <p><strong>ISBN:</strong> {book.isbn13}</p>
                 <p><strong>Publication Year:</strong> {book.publication}</p>
-                
-                <h3>Ratings</h3>
+
+                <h3 className="mt-4 mb-3 text-success">Ratings</h3>
                 <p><strong>Average Rating:</strong> {book.ratings.average}</p>
                 <p><strong>Total Ratings:</strong> {book.ratings.count}</p>
-                
-                <div className="rating-breakdown">
-                  <p>5 Stars: {book.ratings.rating_5}</p>
-                  <p>4 Stars: {book.ratings.rating_4}</p>
-                  <p>3 Stars: {book.ratings.rating_3}</p>
-                  <p>2 Stars: {book.ratings.rating_2}</p>
-                  <p>1 Star: {book.ratings.rating_1}</p>
+
+                <div className="rating-breakdown mt-3">
+                  <p>⭐️⭐️⭐️⭐️⭐️: {book.ratings.rating_5}</p>
+                  <p>⭐️⭐️⭐️⭐️: {book.ratings.rating_4}</p>
+                  <p>⭐️⭐️⭐️: {book.ratings.rating_3}</p>
+                  <p>⭐️⭐️: {book.ratings.rating_2}</p>
+                  <p>⭐️: {book.ratings.rating_1}</p>
                 </div>
               </div>
             </Card.Body>
