@@ -666,10 +666,10 @@
     prop-types "^15.8.1"
     react-is "^18.3.1"
 
-"@next/env@14.2.5":
-  version "14.2.5"
-  resolved "https://registry.npmjs.org/@next/env/-/env-14.2.5.tgz"
-  integrity sha512-/zZGkrTOsraVfYjGP8uM0p6r0BDT6xWpkjdVbcz66PJVSpwXX3yNiRycxAuDfBKGWBrZBXRuK/YVlkNgxHGwmA==
+"@next/env@14.2.19":
+  version "14.2.19"
+  resolved "https://registry.npmjs.org/@next/env/-/env-14.2.19.tgz"
+  integrity sha512-8yWSNi1p+AOsd1QsxZMMkXtdrz8wvYoRxoUa9olmHBspHVLnxpptyKoI574ZF90yq1gXv/CqpchVLBoK8RcN7w==
 
 "@next/eslint-plugin-next@14.2.8":
   version "14.2.8"
@@ -678,10 +678,10 @@
   dependencies:
     glob "10.3.10"
 
-"@next/swc-darwin-arm64@14.2.5":
-  version "14.2.5"
-  resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-14.2.5.tgz"
-  integrity sha512-/9zVxJ+K9lrzSGli1///ujyRfon/ZneeZ+v4ptpiPoOU+GKZnm8Wj8ELWU1Pm7GHltYRBklmXMTUqM/DqQ99FQ==
+"@next/swc-darwin-arm64@14.2.19":
+  version "14.2.19"
+  resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-14.2.19.tgz"
+  integrity sha512-mL0Nn2PNKV0L++F1l69wY3ySCg9ryw9NtvPhAXm952wpxLVWCCDkVb6XTtOeicF8EdstbjZyLRBflEHtv/Wk2w==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -3408,12 +3408,12 @@ next-auth@^4.24.7:
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
-"next@^12.2.5 || ^13 || ^14", next@^14.2.5:
-  version "14.2.5"
-  resolved "https://registry.npmjs.org/next/-/next-14.2.5.tgz"
-  integrity sha512-0f8aRfBVL+mpzfBjYfQuLWh2WyAwtJXCRfkPF4UJ5qd2YwrHczsrSzXU4tRMV0OAxR8ZJZWPFn6uhSC56UTsLA==
+"next@^12.2.5 || ^13 || ^14", next@^14.2.19:
+  version "14.2.19"
+  resolved "https://registry.npmjs.org/next/-/next-14.2.19.tgz"
+  integrity sha512-YTOWj8MDofNLfSeHhDgFJK6koeMOrbzEZIL2SQ7yeSA8WWGgfoajI4V21Wn2bqVtM7D3QYWSIK/Sdvqi0ptfQQ==
   dependencies:
-    "@next/env" "14.2.5"
+    "@next/env" "14.2.19"
     "@swc/helpers" "0.5.5"
     busboy "1.6.0"
     caniuse-lite "^1.0.30001579"
@@ -3421,15 +3421,15 @@ next-auth@^4.24.7:
     postcss "8.4.31"
     styled-jsx "5.1.1"
   optionalDependencies:
-    "@next/swc-darwin-arm64" "14.2.5"
-    "@next/swc-darwin-x64" "14.2.5"
-    "@next/swc-linux-arm64-gnu" "14.2.5"
-    "@next/swc-linux-arm64-musl" "14.2.5"
-    "@next/swc-linux-x64-gnu" "14.2.5"
-    "@next/swc-linux-x64-musl" "14.2.5"
-    "@next/swc-win32-arm64-msvc" "14.2.5"
-    "@next/swc-win32-ia32-msvc" "14.2.5"
-    "@next/swc-win32-x64-msvc" "14.2.5"
+    "@next/swc-darwin-arm64" "14.2.19"
+    "@next/swc-darwin-x64" "14.2.19"
+    "@next/swc-linux-arm64-gnu" "14.2.19"
+    "@next/swc-linux-arm64-musl" "14.2.19"
+    "@next/swc-linux-x64-gnu" "14.2.19"
+    "@next/swc-linux-x64-musl" "14.2.19"
+    "@next/swc-win32-arm64-msvc" "14.2.19"
+    "@next/swc-win32-ia32-msvc" "14.2.19"
+    "@next/swc-win32-x64-msvc" "14.2.19"
 
 nice-try@^1.0.4:
   version "1.0.5"
