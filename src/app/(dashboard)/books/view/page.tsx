@@ -1,7 +1,9 @@
-import App3 from 'views/books/books-search';
+import BookViewPage from 'views/books/book-view';
 
 // ==============================|| PAGE ||============================== //
 
 export default function SignInPage() {
-  return <App3 />;
+  return <BookViewPage />;
 }
+
+

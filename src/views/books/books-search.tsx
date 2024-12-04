@@ -10,16 +10,23 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useSession } from 'next-auth/react';
 
 interface Book {
-  book_id: number;
-  isbn13: number;
-  authors: string;
-  original_publication_year: number;
-  original_title: string;
+  isbn13: string;
+  author: string;
+  publication: number;
   title: string;
-  average_rating: number;
-  ratings_count: number;
-  image_url: string;
-  small_image_url: string;
+  ratings: {
+      average: number;
+      count: number;
+      rating_1: string;
+      rating_2: string;
+      rating_3: string;
+      rating_4: string;
+      rating_5: string;
+  };
+  icons: {
+      large: string;
+      small: string;
+  };
 }
 
 interface SearchCriteria {
@@ -62,7 +69,10 @@ const App3: React.FC = () => {
         }
         
         const data = await response.json();
-        setFetchedBooks(data.books);
+
+        const books = data.books.filter((book: Book) => book.isbn13.length >= 13);
+
+        setFetchedBooks(books);
       } catch (error) {
         console.error('Error fetching books:', error);
       }
