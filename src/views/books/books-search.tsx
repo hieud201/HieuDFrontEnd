@@ -7,26 +7,7 @@ import './styles/App3.css';
 import BookDisplay from './components/bookDisplay';
 import { Box, Pagination } from '@mui/material';
 import { useSession } from 'next-auth/react';
-
-interface Book {
-  isbn13: string;
-  author: string;
-  publication: number;
-  title: string;
-  ratings: {
-    average: number;
-    count: number;
-    rating_1: string;
-    rating_2: string;
-    rating_3: string;
-    rating_4: string;
-    rating_5: string;
-  };
-  icons: {
-    large: string;
-    small: string;
-  };
-}
+import { Book } from 'types/book';
 
 interface SearchCriteria {
   isbn: string;
@@ -172,6 +153,7 @@ const App3: React.FC = () => {
           <div className="search-information">
             <p className="search-text">ISBN</p>
             <input
+              placeholder="Enter a 13-digit ISBN..."
               className="search-input"
               type="text"
               value={searchCriteria.isbn}
@@ -183,6 +165,7 @@ const App3: React.FC = () => {
           <div className="search-information">
             <p className="search-text">Author</p>
             <input
+              placeholder="Enter a book's author..."
               className="search-input"
               type="text"
               value={searchCriteria.author}
@@ -194,6 +177,7 @@ const App3: React.FC = () => {
           <div className="search-information">
             <p className="search-text">Title</p>
             <input
+              placeholder="Enter a book's title..."
               className="search-input"
               type="text"
               value={searchCriteria.title}
@@ -205,6 +189,7 @@ const App3: React.FC = () => {
           <div className="search-information">
             <p className="search-text">Rating</p>
             <input
+              placeholder="Enter a book's average rating..."
               className="search-input"
               type="text"
               value={searchCriteria.rating}
@@ -216,6 +201,7 @@ const App3: React.FC = () => {
           <div className="search-information">
             <p className="search-text">Year</p>
             <input
+              placeholder="Enter a book's publication year..."
               className="search-input"
               type="text"
               value={searchCriteria.year}

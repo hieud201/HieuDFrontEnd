@@ -1,26 +1,7 @@
 import { Card, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRouter } from 'next/navigation';
-
-interface Book {
-  isbn13: string;
-  author: string;
-  publication: number;
-  title: string;
-  ratings: {
-      average: number;
-      count: number;
-      rating_1: string;
-      rating_2: string;
-      rating_3: string;
-      rating_4: string;
-      rating_5: string;
-  };
-  icons: {
-      large: string;
-      small: string;
-  };
-}
+import { Book } from 'types/book';
 
 interface BookDisplayProps {
   books: Book[];
@@ -30,7 +11,7 @@ interface BookDisplayProps {
 
 const BookDisplay: React.FC<BookDisplayProps> = ({ books, currentPage, booksPerPage }) => {
   const router = useRouter();
-  
+
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const pageData = books.slice(indexOfFirstBook, indexOfLastBook);
@@ -45,23 +26,21 @@ const BookDisplay: React.FC<BookDisplayProps> = ({ books, currentPage, booksPerP
     <div>
       <Row>
         {pageData.map((book) => (
-          <Col 
-            md={6} 
+          <Col
+            md={6}
             key={book.isbn13}
             onClick={() => handleBookClick(book.isbn13)}
             style={{ cursor: 'pointer' }} // Add pointer cursor to indicate clickability
           >
             <Card className="single-book-style">
               <Card.Body>
-                <Card.Title><strong>{book.title}</strong> </Card.Title>
+                <Card.Title>
+                  <strong>{book.title}</strong>{' '}
+                </Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Author: {book.author}</Card.Subtitle>
                 <Card.Text>ISBN: {book.isbn13}</Card.Text>
                 <Card.Text>Year: {book.publication}</Card.Text>
-                <img 
-                  src={book.icons.large} 
-                  alt={book.title} 
-                  className="img-fluid" // Bootstrap class to make image responsive
-                />
+                <img src={book.icons.large} alt={book.title} className="img-fluid" />
               </Card.Body>
             </Card>
           </Col>
@@ -69,6 +48,6 @@ const BookDisplay: React.FC<BookDisplayProps> = ({ books, currentPage, booksPerP
       </Row>
     </div>
   );
-}
+};
 
 export default BookDisplay;
