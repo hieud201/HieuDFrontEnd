@@ -152,7 +152,7 @@ const BookAddForm: React.FC = () => {
           placeholder="Enter a new book's average rating..."
           type="number"
           name="Rating_Avg"
-          value={formData.Rating_Avg}
+          value={formData.Rating_Avg ?? ''}
           onChange={handleInputChange}
           step="0.1"
           min="0"
@@ -167,7 +167,7 @@ const BookAddForm: React.FC = () => {
           placeholder="Enter a new book's rating count..."
           type="number"
           name="Rating_Count"
-          value={formData.Rating_Count}
+          value={formData.Rating_Count ?? ''}
           onChange={handleInputChange}
           min="0"
           required
@@ -181,7 +181,7 @@ const BookAddForm: React.FC = () => {
             placeholder="Enter a new book's 1 star count..."
             type="number"
             name="One_Star_Count"
-            value={formData.One_Star_Count}
+            value={formData.One_Star_Count ?? ''}
             onChange={handleInputChange}
             min="0"
             required
@@ -194,7 +194,7 @@ const BookAddForm: React.FC = () => {
             placeholder="Enter a new book's 2 star count..."
             type="number"
             name="Two_Star_Count"
-            value={formData.Two_Star_Count}
+            value={formData.Two_Star_Count ?? ''}
             onChange={handleInputChange}
             min="0"
             required
@@ -207,7 +207,7 @@ const BookAddForm: React.FC = () => {
             placeholder="Enter a new book's 3 star count..."
             type="number"
             name="Three_Star_Count"
-            value={formData.Three_Star_Count}
+            value={formData.Three_Star_Count ?? ''}
             onChange={handleInputChange}
             min="0"
             required
@@ -220,7 +220,7 @@ const BookAddForm: React.FC = () => {
             placeholder="Enter a new book's 4 star count..."
             type="number"
             name="Four_Star_Count"
-            value={formData.Four_Star_Count}
+            value={formData.Four_Star_Count ?? ''}
             onChange={handleInputChange}
             min="0"
             required
@@ -233,7 +233,7 @@ const BookAddForm: React.FC = () => {
             placeholder="Enter a new book's 5 star count..."
             type="number"
             name="Five_Star_Count"
-            value={formData.Five_Star_Count}
+            value={formData.Five_Star_Count ?? ''}
             onChange={handleInputChange}
             min="0"
             required
@@ -271,7 +271,7 @@ const BookAddForm: React.FC = () => {
           placeholder="Enter a new book's publication year..."
           type="number"
           name="Publication_Year"
-          value={formData.Publication_Year}
+          value={formData.Publication_Year ?? ''}
           onChange={handleInputChange}
           min="1000"
           max={new Date().getFullYear()}
@@ -283,7 +283,7 @@ const BookAddForm: React.FC = () => {
         <Button variant="primary" type="submit">
           Add Book
         </Button>
-        <Button variant="secondary" onClick={() => handleReset()}>
+        <Button variant="secondary" onClick={handleReset}>
           Reset
         </Button>
       </div>
