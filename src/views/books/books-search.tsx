@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card, CardBody, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App3.css';
 import BookDisplay from './components/bookDisplay';
@@ -151,73 +151,74 @@ const App3: React.FC = () => {
       <Card>
         <Card.Body>
           <p>Note: Search only 1 field at a time</p>
-          
-          <div className="search-information">
-            <p className="search-text">ISBN</p>
-            <input
-              placeholder="Enter a 13-digit ISBN..."
-              className="search-input"
-              type="text"
-              value={searchCriteria.isbn}
-              onChange={(e) => handleInputChange('isbn', e.target.value)}
-              disabled={searchCriteria.isbn === '' && Object.values(searchCriteria).some((val, idx) => idx !== 0 && val !== '')}
-            />
-          </div>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>ISBN13</Form.Label>
+              <Form.Control
+                placeholder="Enter a 13-digit ISBN..."
+                type="text"
+                name="ISBN13"
+                value={searchCriteria.isbn}
+                onChange={(e) => handleInputChange('isbn', e.target.value)}
+                disabled={searchCriteria.isbn === '' && Object.values(searchCriteria).some((val, idx) => idx !== 0 && val !== '')}
+              />
+            </Form.Group>
 
-          <div className="search-information">
-            <p className="search-text">Author</p>
-            <input
-              placeholder="Enter a book's author..."
-              className="search-input"
-              type="text"
-              value={searchCriteria.author}
-              onChange={(e) => handleInputChange('author', e.target.value)}
-              disabled={searchCriteria.author === '' && Object.values(searchCriteria).some((val, idx) => idx !== 1 && val !== '')}
-            />
-          </div>
+            <Form.Group className="mb-3">
+              <Form.Label>Author</Form.Label>
+              <Form.Control
+                placeholder="Enter a book's author..."
+                type="text"
+                name="Author"
+                value={searchCriteria.author}
+                onChange={(e) => handleInputChange('author', e.target.value)}
+                disabled={searchCriteria.author === '' && Object.values(searchCriteria).some((val, idx) => idx !== 1 && val !== '')}
+              />
+            </Form.Group>
 
-          <div className="search-information">
-            <p className="search-text">Title</p>
-            <input
-              placeholder="Enter a book's title..."
-              className="search-input"
-              type="text"
-              value={searchCriteria.title}
-              onChange={(e) => handleInputChange('title', e.target.value)}
-              disabled={searchCriteria.title === '' && Object.values(searchCriteria).some((val, idx) => idx !== 2 && val !== '')}
-            />
-          </div>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                placeholder="Enter a book's title..."
+                type="text"
+                name="Title"
+                value={searchCriteria.title}
+                onChange={(e) => handleInputChange('title', e.target.value)}
+                disabled={searchCriteria.title === '' && Object.values(searchCriteria).some((val, idx) => idx !== 2 && val !== '')}
+              />
+            </Form.Group>
 
-          <div className="search-information">
-            <p className="search-text">Rating</p>
-            <input
-              placeholder="Enter a book's average rating..."
-              className="search-input"
-              type="text"
-              value={searchCriteria.rating}
-              onChange={(e) => handleInputChange('rating', e.target.value)}
-              disabled={searchCriteria.rating === '' && Object.values(searchCriteria).some((val, idx) => idx !== 3 && val !== '')}
-            />
-          </div>
+            <Form.Group className="mb-3">
+              <Form.Label>Rating</Form.Label>
+              <Form.Control
+                placeholder="Enter a book's average rating..."
+                type="text"
+                name="Rating"
+                value={searchCriteria.rating}
+                onChange={(e) => handleInputChange('rating', e.target.value)}
+                disabled={searchCriteria.rating === '' && Object.values(searchCriteria).some((val, idx) => idx !== 3 && val !== '')}
+              />
+            </Form.Group>
 
-          <div className="search-information">
-            <p className="search-text">Year</p>
-            <input
-              placeholder="Enter a book's publication year..."
-              className="search-input"
-              type="text"
-              value={searchCriteria.year}
-              onChange={(e) => handleInputChange('year', e.target.value)}
-              disabled={searchCriteria.year === '' && Object.values(searchCriteria).some((val, idx) => idx !== 4 && val !== '')}
-            />
-          </div>
+            <Form.Group className="mb-3">
+              <Form.Label>Year</Form.Label>
+              <Form.Control
+                placeholder="Enter a book's publication year..."
+                type="text"
+                name="Year"
+                value={searchCriteria.year}
+                onChange={(e) => handleInputChange('year', e.target.value)}
+                disabled={searchCriteria.year === '' && Object.values(searchCriteria).some((val, idx) => idx !== 4 && val !== '')}
+              />
+            </Form.Group>
 
-          <button className="book-search-button" onClick={handleSearch}>
-            Book Search
-          </button>
-          <button className="reset-button" onClick={handleReset}>
-            Reset
-          </button>
+            <Button className="book-search-button" onClick={handleSearch}>
+              Book Search
+            </Button>
+            <Button className="reset-button" onClick={handleReset}>
+              Reset
+            </Button>
+          </Form>
         </Card.Body>
       </Card>
 
