@@ -150,6 +150,8 @@ const App3: React.FC = () => {
     <div>
       <Card>
         <Card.Body>
+          <p>Note: Search only 1 field at a time</p>
+          
           <div className="search-information">
             <p className="search-text">ISBN</p>
             <input
