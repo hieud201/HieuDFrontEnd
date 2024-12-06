@@ -5,17 +5,17 @@ import { useSession } from 'next-auth/react';
 interface BookFormData {
   ISBN13: string;
   Title: string;
-  Authors?: string;
-  Rating_Avg?: number;
-  Rating_Count?: number;
-  One_Star_Count?: number;
-  Two_Star_Count?: number;
-  Three_Star_Count?: number;
-  Four_Star_Count?: number;
-  Five_Star_Count?: number;
-  Image_URL?: string;
-  Image_Small_URL?: string;
-  Publication_Year?: number;
+  Authors: string;
+  Rating_Avg: number;
+  Rating_Count: number;
+  One_Star_Count: number;
+  Two_Star_Count: number;
+  Three_Star_Count: number;
+  Four_Star_Count: number;
+  Five_Star_Count: number;
+  Image_URL: string;
+  Image_Small_URL: string;
+  Publication_Year: number;
 }
 
 const BookAddForm: React.FC = () => {
@@ -27,23 +27,23 @@ const BookAddForm: React.FC = () => {
     ISBN13: '',
     Title: '',
     Authors: '',
-    Rating_Avg: undefined,
-    Rating_Count: undefined,
-    One_Star_Count: undefined,
-    Two_Star_Count: undefined,
-    Three_Star_Count: undefined,
-    Four_Star_Count: undefined,
-    Five_Star_Count: undefined,
+    Rating_Avg: 0,
+    Rating_Count: 0,
+    One_Star_Count: 0,
+    Two_Star_Count: 0,
+    Three_Star_Count: 0,
+    Four_Star_Count: 0,
+    Five_Star_Count: 0,
     Image_URL: '',
     Image_Small_URL: '',
-    Publication_Year: undefined //new Date().getFullYear()
+    Publication_Year: new Date().getFullYear()
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+    const { name, type, value } = event.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: type === 'text' ? value : parseInt(value)
     }));
   };
 
@@ -52,16 +52,16 @@ const BookAddForm: React.FC = () => {
       ISBN13: '',
       Title: '',
       Authors: '',
-      Rating_Avg: undefined,
-      Rating_Count: undefined,
-      One_Star_Count: undefined,
-      Two_Star_Count: undefined,
-      Three_Star_Count: undefined,
-      Four_Star_Count: undefined,
-      Five_Star_Count: undefined,
+      Rating_Avg: 0,
+      Rating_Count: 0,
+      One_Star_Count: 0,
+      Two_Star_Count: 0,
+      Three_Star_Count: 0,
+      Four_Star_Count: 0,
+      Five_Star_Count: 0,
       Image_URL: '',
       Image_Small_URL: '',
-      Publication_Year: undefined
+      Publication_Year: new Date().getFullYear()
     });
   };
 
@@ -70,7 +70,7 @@ const BookAddForm: React.FC = () => {
       setError('ISBN and Title are required fields');
       return false;
     }
-    if (formData.ISBN13.length !== 13 || isNaN(Number(formData.ISBN13))) {
+    if (formData.ISBN13.toString().length !== 13 || isNaN(Number(formData.ISBN13))) {
       setError('ISBN must be a 13-digit number');
       return false;
     }
@@ -97,6 +97,7 @@ const BookAddForm: React.FC = () => {
       if (!response.ok) {
         throw new Error('Failed to add book');
       }
+      setError('');
 
       setSuccess('Book added successfully!');
     } catch (error) {
@@ -114,9 +115,9 @@ const BookAddForm: React.FC = () => {
         <Form.Label>ISBN13 *</Form.Label>
         <Form.Control
           placeholder="Enter a new 13-digit ISBN..."
-          type="text"
+          type="number"
           name="ISBN13"
-          value={formData.ISBN13}
+          value={formData.ISBN13 ?? ''}
           onChange={handleInputChange}
           required
         />
