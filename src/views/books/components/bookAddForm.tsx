@@ -6,17 +6,17 @@ import { useRouter } from 'next/navigation';
 interface BookFormData {
   ISBN13: string;
   Title: string;
-  Authors: string;
-  Rating_Avg: number;
-  Rating_Count: number;
-  One_Star_Count: number;
-  Two_Star_Count: number;
-  Three_Star_Count: number;
-  Four_Star_Count: number;
-  Five_Star_Count: number;
-  Image_URL: string;
-  Image_Small_URL: string;
-  Publication_Year: number;
+  Authors?: string;
+  Rating_Avg?: number;
+  Rating_Count?: number;
+  One_Star_Count?: number;
+  Two_Star_Count?: number;
+  Three_Star_Count?: number;
+  Four_Star_Count?: number;
+  Five_Star_Count?: number;
+  Image_URL?: string;
+  Image_Small_URL?: string;
+  Publication_Year?: number;
 }
 
 const BookAddForm: React.FC = () => {
@@ -29,21 +29,21 @@ const BookAddForm: React.FC = () => {
     ISBN13: '',
     Title: '',
     Authors: '',
-    Rating_Avg: 0,
-    Rating_Count: 0,
-    One_Star_Count: 0,
-    Two_Star_Count: 0,
-    Three_Star_Count: 0,
-    Four_Star_Count: 0,
-    Five_Star_Count: 0,
+    Rating_Avg: undefined,
+    Rating_Count: undefined,
+    One_Star_Count: undefined,
+    Two_Star_Count: undefined,
+    Three_Star_Count: undefined,
+    Four_Star_Count: undefined,
+    Five_Star_Count: undefined,
     Image_URL: '',
     Image_Small_URL: '',
-    Publication_Year: new Date().getFullYear()
+    Publication_Year: undefined //new Date().getFullYear()
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value
     }));
@@ -69,13 +69,13 @@ const BookAddForm: React.FC = () => {
     if (!validateForm()) return;
 
     try {
-      const response = await fetch('http://localhost:4000/addBook', {
+      const response = await fetch('http://localhost:4000/create/addBook', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.token?.accessToken}`,
+          Authorization: `Bearer ${session?.token?.accessToken}`
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
 
       if (!response.ok) {
@@ -83,9 +83,6 @@ const BookAddForm: React.FC = () => {
       }
 
       setSuccess('Book added successfully!');
-      setTimeout(() => {
-        router.push('/books');
-      }, 2000);
     } catch (error) {
       setError('Error adding book. Please try again.');
       console.error('Error:', error);
@@ -99,24 +96,12 @@ const BookAddForm: React.FC = () => {
 
       <Form.Group className="mb-3">
         <Form.Label>ISBN13 *</Form.Label>
-        <Form.Control
-          type="text"
-          name="ISBN13"
-          value={formData.ISBN13}
-          onChange={handleInputChange}
-          required
-        />
+        <Form.Control type="text" name="ISBN13" value={formData.ISBN13} onChange={handleInputChange} required />
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Title *</Form.Label>
-        <Form.Control
-          type="text"
-          name="Title"
-          value={formData.Title}
-          onChange={handleInputChange}
-          required
-        />
+        <Form.Control type="text" name="Title" value={formData.Title} onChange={handleInputChange} required />
       </Form.Group>
 
       <Form.Group className="mb-3">
@@ -132,103 +117,49 @@ const BookAddForm: React.FC = () => {
 
       <Form.Group className="mb-3">
         <Form.Label>Rating Average</Form.Label>
-        <Form.Control
-          type="number"
-          name="Rating_Avg"
-          value={formData.Rating_Avg}
-          onChange={handleInputChange}
-          step="0.1"
-          min="0"
-          max="5"
-        />
+        <Form.Control type="number" name="Rating_Avg" value={formData.Rating_Avg} onChange={handleInputChange} step="0.1" min="0" max="5" />
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Rating Count</Form.Label>
-        <Form.Control
-          type="number"
-          name="Rating_Count"
-          value={formData.Rating_Count}
-          onChange={handleInputChange}
-          min="0"
-        />
+        <Form.Control type="number" name="Rating_Count" value={formData.Rating_Count} onChange={handleInputChange} min="0" />
       </Form.Group>
 
       <div className="row">
         <Form.Group className="col mb-3">
           <Form.Label>1 Star Count</Form.Label>
-          <Form.Control
-            type="number"
-            name="One_Star_Count"
-            value={formData.One_Star_Count}
-            onChange={handleInputChange}
-            min="0"
-          />
+          <Form.Control type="number" name="One_Star_Count" value={formData.One_Star_Count} onChange={handleInputChange} min="0" />
         </Form.Group>
 
         <Form.Group className="col mb-3">
           <Form.Label>2 Star Count</Form.Label>
-          <Form.Control
-            type="number"
-            name="Two_Star_Count"
-            value={formData.Two_Star_Count}
-            onChange={handleInputChange}
-            min="0"
-          />
+          <Form.Control type="number" name="Two_Star_Count" value={formData.Two_Star_Count} onChange={handleInputChange} min="0" />
         </Form.Group>
 
         <Form.Group className="col mb-3">
           <Form.Label>3 Star Count</Form.Label>
-          <Form.Control
-            type="number"
-            name="Three_Star_Count"
-            value={formData.Three_Star_Count}
-            onChange={handleInputChange}
-            min="0"
-          />
+          <Form.Control type="number" name="Three_Star_Count" value={formData.Three_Star_Count} onChange={handleInputChange} min="0" />
         </Form.Group>
 
         <Form.Group className="col mb-3">
           <Form.Label>4 Star Count</Form.Label>
-          <Form.Control
-            type="number"
-            name="Four_Star_Count"
-            value={formData.Four_Star_Count}
-            onChange={handleInputChange}
-            min="0"
-          />
+          <Form.Control type="number" name="Four_Star_Count" value={formData.Four_Star_Count} onChange={handleInputChange} min="0" />
         </Form.Group>
 
         <Form.Group className="col mb-3">
           <Form.Label>5 Star Count</Form.Label>
-          <Form.Control
-            type="number"
-            name="Five_Star_Count"
-            value={formData.Five_Star_Count}
-            onChange={handleInputChange}
-            min="0"
-          />
+          <Form.Control type="number" name="Five_Star_Count" value={formData.Five_Star_Count} onChange={handleInputChange} min="0" />
         </Form.Group>
       </div>
 
       <Form.Group className="mb-3">
         <Form.Label>Image URL</Form.Label>
-        <Form.Control
-          type="text"
-          name="Image_URL"
-          value={formData.Image_URL}
-          onChange={handleInputChange}
-        />
+        <Form.Control type="text" name="Image_URL" value={formData.Image_URL} onChange={handleInputChange} />
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Small Image URL</Form.Label>
-        <Form.Control
-          type="text"
-          name="Image_Small_URL"
-          value={formData.Image_Small_URL}
-          onChange={handleInputChange}
-        />
+        <Form.Control type="text" name="Image_Small_URL" value={formData.Image_Small_URL} onChange={handleInputChange} />
       </Form.Group>
 
       <Form.Group className="mb-3">
