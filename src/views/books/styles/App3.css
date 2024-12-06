@@ -63,3 +63,38 @@
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
+
+.book-details-card {
+  background-color: #f9f9f9; /* Light background for contrast */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px;
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.book-details-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.book-details-card h1 {
+  font-size: 2.5rem; /* Larger title font size */
+  font-weight: bold;
+}
+
+.book-details-card .text-primary {
+  color: #28a745; /* Bootstrap primary blue */
+}
+
+.book-details-card .text-success {
+  color: #28a745; /* Bootstrap success green */
+}
+
+.rating-breakdown p {
+  margin: 5px 0; /* Space between ratings */
+  font-size: 1rem;
+}
+
+.book-details p {
+  font-size: 1.1rem; /* Slightly larger text for details */
+  margin-bottom: 8px;
+}
