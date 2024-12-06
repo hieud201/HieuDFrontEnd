@@ -135,7 +135,7 @@ const BookAddForm: React.FC = () => {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Authors</Form.Label>
+        <Form.Label>Authors *</Form.Label>
         <Form.Control
           placeholder="Enter a new book's comma-separated list of authors..."
           type="text"
@@ -147,7 +147,7 @@ const BookAddForm: React.FC = () => {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Rating Average</Form.Label>
+        <Form.Label>Rating Average *</Form.Label>
         <Form.Control
           placeholder="Enter a new book's average rating..."
           type="number"
@@ -162,7 +162,7 @@ const BookAddForm: React.FC = () => {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Rating Count</Form.Label>
+        <Form.Label>Rating Count *</Form.Label>
         <Form.Control
           placeholder="Enter a new book's rating count..."
           type="number"
@@ -176,7 +176,7 @@ const BookAddForm: React.FC = () => {
 
       <div className="row">
         <Form.Group className="col mb-3">
-          <Form.Label>1 Star Count</Form.Label>
+          <Form.Label>1 Star Count *</Form.Label>
           <Form.Control
             placeholder="Enter a new book's 1 star count..."
             type="number"
@@ -189,7 +189,7 @@ const BookAddForm: React.FC = () => {
         </Form.Group>
 
         <Form.Group className="col mb-3">
-          <Form.Label>2 Star Count</Form.Label>
+          <Form.Label>2 Star Count *</Form.Label>
           <Form.Control
             placeholder="Enter a new book's 2 star count..."
             type="number"
@@ -202,7 +202,7 @@ const BookAddForm: React.FC = () => {
         </Form.Group>
 
         <Form.Group className="col mb-3">
-          <Form.Label>3 Star Count</Form.Label>
+          <Form.Label>3 Star Count *</Form.Label>
           <Form.Control
             placeholder="Enter a new book's 3 star count..."
             type="number"
@@ -215,7 +215,7 @@ const BookAddForm: React.FC = () => {
         </Form.Group>
 
         <Form.Group className="col mb-3">
-          <Form.Label>4 Star Count</Form.Label>
+          <Form.Label>4 Star Count *</Form.Label>
           <Form.Control
             placeholder="Enter a new book's 4 star count..."
             type="number"
@@ -228,7 +228,7 @@ const BookAddForm: React.FC = () => {
         </Form.Group>
 
         <Form.Group className="col mb-3">
-          <Form.Label>5 Star Count</Form.Label>
+          <Form.Label>5 Star Count *</Form.Label>
           <Form.Control
             placeholder="Enter a new book's 5 star count..."
             type="number"
@@ -242,7 +242,7 @@ const BookAddForm: React.FC = () => {
       </div>
 
       <Form.Group className="mb-3">
-        <Form.Label>Image URL</Form.Label>
+        <Form.Label>Image URL *</Form.Label>
         <Form.Control
           placeholder="Enter a new book's image URL..."
           type="text"
@@ -254,7 +254,7 @@ const BookAddForm: React.FC = () => {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Small Image URL</Form.Label>
+        <Form.Label>Small Image URL *</Form.Label>
         <Form.Control
           placeholder="Enter a new book's small image URL..."
           type="text"
@@ -266,7 +266,7 @@ const BookAddForm: React.FC = () => {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Publication Year</Form.Label>
+        <Form.Label>Publication Year *</Form.Label>
         <Form.Control
           placeholder="Enter a new book's publication year..."
           type="number"
