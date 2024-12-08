@@ -18,7 +18,7 @@ const BookDisplay: React.FC<BookDisplayProps> = ({ books, currentPage, booksPerP
 
   // Handle book click navigation
   const handleBookClick = (isbn13: string) => {
-    // Navigate to the book-single-view page using isbn13
+    // Updated path to use book-single-view
     router.push(`/books/book-single-view?isbn13=${isbn13}`);
   };
 
@@ -30,7 +30,7 @@ const BookDisplay: React.FC<BookDisplayProps> = ({ books, currentPage, booksPerP
             md={6}
             key={book.isbn13}
             onClick={() => handleBookClick(book.isbn13)}
-            style={{ cursor: 'pointer' }} // Add pointer cursor to indicate clickability
+            style={{ cursor: 'pointer' }}
           >
             <Card className="single-book-style">
               <Card.Body>
