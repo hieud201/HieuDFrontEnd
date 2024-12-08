@@ -18,8 +18,8 @@ const BookDisplay: React.FC<BookDisplayProps> = ({ books, currentPage, booksPerP
 
   // Handle book click navigation
   const handleBookClick = (isbn13: string) => {
-    // Navigate to the book view page using title
-    router.push(`/books/view?isbn13=${isbn13}`);
+    // Navigate to the book-single-view page using isbn13
+    router.push(`/books/book-single-view?isbn13=${isbn13}`);
   };
 
   return (
