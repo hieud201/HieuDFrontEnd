@@ -63,6 +63,8 @@ const BookAddForm: React.FC = () => {
       Image_Small_URL: '',
       Publication_Year: new Date().getFullYear()
     });
+    setSuccess('');
+    setError('');
   };
 
   const validateForm = () => {
