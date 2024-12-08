@@ -1,6 +1,6 @@
 import { Card, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { Book } from 'types/book';
 
 interface BookDisplayProps {
@@ -11,6 +11,7 @@ interface BookDisplayProps {
 
 const BookDisplay: React.FC<BookDisplayProps> = ({ books, currentPage, booksPerPage }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
@@ -18,8 +19,13 @@ const BookDisplay: React.FC<BookDisplayProps> = ({ books, currentPage, booksPerP
 
   // Handle book click navigation
   const handleBookClick = (isbn13: string) => {
-    // Updated path to use book-single-view
-    router.push(`/books/book-single-view?isbn13=${isbn13}`);
+    // Check if we're in the search context
+    if (pathname.includes('/search')) {
+      router.push(`/books/search/${isbn13}`);
+    } else {
+      // Default book view for general browsing
+      router.push(`/books/book-single-view?isbn13=${isbn13}`);
+    }
   };
 
   return (
